@@ -8,7 +8,7 @@ A very lightweight dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/
 * In your AMDS module, declare simple-feature-detector as a dependency;
 ```js
 define(['simple-feature-detector'], function( simpleFeatureDetector ){
-    // do your thing...
+        // do your thing...
 });
 ```
 See the [RequireJS documentation](http://requirejs.org/docs/start.html) for further help if needed.
@@ -16,7 +16,7 @@ See the [RequireJS documentation](http://requirejs.org/docs/start.html) for furt
 * Check support for a feature
 ```js
 if(simpleFeatureDetector.declareSupportFor({ 'column-width', 'wg' })){
-    alert('Yes!');
+        alert('Yes!');
 }
 ```
 Each object contains the CSS property desired and the vendors which it should check for*, _if_ it's not supported natively. 
@@ -32,23 +32,22 @@ Possible values:
 * Check support for multiple features
 ```js
 if(simpleFeatureDetector.declareSupportFor([
-        { 'column-width', 'wg' },
-        { 'border-radius', 'all' }
-    ])){
+            { 'column-width', 'wg' },
+            { 'border-radius', 'all' }
+        ])){
    
-    alert('Both!');
+        alert('Both!');
 }
 ```
 * Check support for multiple features and declare support with CSS classes:
 ```js
 simpleFeatureDetector.declareSupportFor([
-    { 'column-width', 'wg' },
-    { 'border-radius', 'all' }
+        { 'column-width', 'wg' },
+        { 'border-radius', 'all' }
 ])
 ```
 The result: `<html class="has-column-width has-border-radius">...</html>`
-```
-This also returns a boolean like the others (but it will not break if there's a failure / missing feature in the list).
+This function also returns a boolean like the others (but it will not break if there's a failure / missing feature in the list).
 
 * Caching: There is none. Use this wisely :)
 
