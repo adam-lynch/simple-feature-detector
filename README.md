@@ -54,7 +54,7 @@ This function also returns a boolean like the others (but it will not break if t
 -----------
 
 ### Browser support
-Since it current uses ClassList, support is [limited](http://caniuse.com/#search=classlist) to modern browsers.
+Since it currently uses ClassList, support is [limited](http://caniuse.com/#search=classlist) to modern browsers.
 
 -----------
 \* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons. 
