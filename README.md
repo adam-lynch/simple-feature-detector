@@ -1,6 +1,6 @@
 # simple-feature-detector
 
-A very lightweight dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
+A very lightweight (711 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
 ### Usage
 * [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
@@ -50,6 +50,11 @@ The result: `<html class="has-column-width has-border-radius">...</html>`
 This function also returns a boolean like the others (but it will not break if there's a failure / missing feature in the list).
 
 * Caching: There is none. Use this wisely :)
+
+-----------
+
+### Browser support
+Since it current uses ClassList, support is [limited](http://caniuse.com/#search=classlist) to modern browsers.
 
 -----------
 \* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons. 
