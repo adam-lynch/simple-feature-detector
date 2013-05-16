@@ -3,7 +3,7 @@
 A very lightweight dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
 ### Usage
-* Download
+* [Download](https://github.com/adam-lynch/simple-feature-detector/raw/branch/simple-feature-detector.min.js)
 
 * In your AMDS module, declare simple-feature-detector as a dependency;
 ```js
