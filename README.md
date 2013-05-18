@@ -1,4 +1,4 @@
-# Simple Feature Detector v0.0.2
+# Simple Feature Detector v0.0.2 [![Build Status](https://travis-ci.org/adam-lynch/simple-feature-detector.png)](https://travis-ci.org/adam-lynch/simple-feature-detector)
 
 A very lightweight (605 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
