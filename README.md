@@ -15,7 +15,7 @@ See the [RequireJS documentation](http://requirejs.org/docs/start.html) for furt
 
 * Check support for a feature
 ```js
-if(simpleFeatureDetector.declareSupportFor({ 'column-width', 'wg' })){
+if(simpleFeatureDetector.supports({ 'column-width', 'wg' })){
         alert('Yes!');
 }
 ```
@@ -31,7 +31,7 @@ Possible values:
 
 * Check support for multiple features
 ```js
-if(simpleFeatureDetector.declareSupportFor([
+if(simpleFeatureDetector.supports([
             { 'column-width', 'wg' },
             { 'border-radius', 'all' }
         ])){
