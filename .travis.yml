@@ -1,0 +1,10 @@
+language: php
+
+php:
+  - 5.4
+
+before_script:
+  - cd test
+  - php writeTestRunnerFile.php
+
+script: phantomjs config/phantomjs_jasminexml_runner.js test-runner.html results
