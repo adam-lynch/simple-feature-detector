@@ -1,4 +1,22 @@
-describe( "Simple Feature Detector", function(){
+var allTests = function( supportForClassList ){
+
+	if('undefined' === typeof supportForClassList){
+		supportForClassList = true;//true by default
+	}
+
+	if( supportForClassList && ('undefined' === typeof Element || ! 'classList' in document.documentElement)){
+		console.error("Since your browser does not support Element.classList, half of the tests are meaningless");
+	}
+
+	var instantiateSimpleFeatureDetector = function(){
+
+		var featureDetector = SimpleFeatureDetector();
+
+
+		featureDetector._classListIsSupported = supportForClassList;
+
+		return featureDetector;
+	}
 
 	afterEach( function(){
 		testUtils.cleanFeatureClasses( document.documentElement );
@@ -10,6 +28,7 @@ describe( "Simple Feature Detector", function(){
 	it( "exists", function(){
 		expect( typeof SimpleFeatureDetector ).not.toEqual( "undefined" );
 		expect( typeof SimpleFeatureDetector() ).toEqual( "object" );
+		expect( typeof instantiateSimpleFeatureDetector() ).toEqual( "object" );
 	} );
 
 
@@ -17,57 +36,58 @@ describe( "Simple Feature Detector", function(){
 
 	describe( "declares support for features", function(){
 
-		it( "declares support whether it be found natively or with a the current rendering engine's vendor prefix", function(){
+		it( "declares support whether it be found natively or with a the current rendering engine's vendor prefix",
+			function(){
 
-			var simpleFeatureDetector = SimpleFeatureDetector(),
-				expectedLocation = document.documentElement;
+				var simpleFeatureDetector = instantiateSimpleFeatureDetector(),
+					expectedLocation = document.documentElement;
 
-			testUtils.mockStylesSupport( simpleFeatureDetector, {
-				columnWidth:      "11px",
-				mozColumnGapSize: "infinity",
-				webkitBlah:       "none"
-			} );
+				testUtils.mockStylesSupport( simpleFeatureDetector, {
+					columnWidth:      "11px",
+					mozColumnGapSize: "infinity",
+					webkitBlah:       "none"
+				} );
 
-			var desiredProperties = [
-					{
-						property: 'column-width',
-						vendors:  ''//native
-					},
-					{
-						property: 'column-gap-size',
-						vendors:  'all'//gecko
-					},
-					{
-						property: 'blah',
-						vendors:  'w'//ebkit
+				var desiredProperties = [
+						{
+							property: 'column-width',
+							vendors:  ''//native
+						},
+						{
+							property: 'column-gap-size',
+							vendors:  'all'//gecko
+						},
+						{
+							property: 'blah',
+							vendors:  'w'//ebkit
+						}
+					],
+					result = simpleFeatureDetector.declareSupportFor( desiredProperties );
+
+				expect( result ).toEqual( true );
+
+				var classes = expectedLocation.className.split( " " ),
+					expectedClass,
+					found,
+					index
+
+				for( var d in desiredProperties ){
+					expectedClass = testUtils.featureClassPrefix + desiredProperties[d].property;
+					found = false;
+
+					for( index in classes ){
+						if( classes[index] === expectedClass ){
+							classes.splice( index, 1 );//remove from array
+
+							found = true;
+							break;
+						}
 					}
-				],
-				result = simpleFeatureDetector.declareSupportFor( desiredProperties );
 
-			expect( result ).toEqual( true );
-
-			var classes = expectedLocation.className.split( " " ),
-				expectedClass,
-				found,
-				index
-
-			for( var d in desiredProperties ){
-				expectedClass = testUtils.featureClassPrefix + desiredProperties[d].property;
-				found = false;
-
-				for( index in classes ){
-					if( classes[index] === expectedClass ){
-						classes.splice( index, 1 );//remove from array
-
-						found = true;
-						break;
-					}
+					expect( found ).toEqual( true );
 				}
 
-				expect( found ).toEqual( true );
-			}
-
-		} );
+			} );
 	} );
 
 
@@ -116,7 +136,7 @@ describe( "Simple Feature Detector", function(){
 
 		it( "correctly detects native-support for a group of CSS properties", function(){
 
-			var simpleFeatureDetector = SimpleFeatureDetector(),
+			var simpleFeatureDetector = instantiateSimpleFeatureDetector(),
 				vendorStylePropertyPrefix = '';
 
 			buildListsOfPropertiesAndTest( simpleFeatureDetector, "", vendorStylePropertyPrefix, true );
@@ -132,7 +152,7 @@ describe( "Simple Feature Detector", function(){
 				function( vendor ){
 					return function(){
 
-						var simpleFeatureDetector = SimpleFeatureDetector(),
+						var simpleFeatureDetector = instantiateSimpleFeatureDetector(),
 							vendorStylePropertyPrefix = vendor.stylePropertyPrefix;
 
 						//should not be true when no vendors are specified:
@@ -201,7 +221,7 @@ describe( "Simple Feature Detector", function(){
 
 			it( "correctly detects native-support for a CSS property (" + cssProperty + ")", function(){
 
-				individualPropertyTest( SimpleFeatureDetector(), cssProperty, styleProperty );
+				individualPropertyTest( instantiateSimpleFeatureDetector(), cssProperty, styleProperty );
 			} );
 
 			for( var v in testUtils.vendors ){
@@ -213,7 +233,7 @@ describe( "Simple Feature Detector", function(){
 					function( vendor, prefixedStyleProperty, cssProperty ){
 						return function(){
 
-							individualPropertyTest( SimpleFeatureDetector(), cssProperty, prefixedStyleProperty, true,
+							individualPropertyTest( instantiateSimpleFeatureDetector(), cssProperty, prefixedStyleProperty, true,
 													vendor.initial );
 						};
 					}( vendor, prefixedStyleProperty, cssProperty ) );
@@ -221,4 +241,13 @@ describe( "Simple Feature Detector", function(){
 		}
 	} );
 
+};
+
+describe( "Simple Feature Detector", function(){
+
+	describe( "with Element.ClassList support", allTests );
+
+	describe( "using a Element.className as a fallback for Element.ClassList", function(){
+		allTests(false);
+	} );
 } );

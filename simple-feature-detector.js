@@ -10,10 +10,10 @@ define( function(){
 
 			_vendorPrefixes = {
 				g: 'moz', //Gecko
-				 k: 'k', //KHTML (Konqueror)
-				 p: 'o', //Presto (Opera)
-				 t: 'ms', //Trident (IE)
-				 w: 'webkit'
+				k: 'k', //KHTML (Konqueror)
+				p: 'o', //Presto (Opera)
+				t: 'ms', //Trident (IE)
+				w: 'webkit'
 			},
 
 			/**
@@ -24,42 +24,61 @@ define( function(){
 			 * @param prefixes | a string; e.g. "wgt" which means Webkit, Gecko (Moz) or a Trident (MS) prefixed property is ok
 			 * @returns {Array}
 			 */
-			_buildListOfAcceptableVendorPrefixes = function( prefixes ){
+				_buildListOfAcceptableVendorPrefixes = function( prefixes ){
 				var vendors = [];
 				prefixes = ('all' === prefixes ? 'gkptw' : prefixes);
 
 				for( var c = 0, length = prefixes.length; c < length; c++ ){
-					vendors.push(_vendorPrefixes[prefixes[c]]);
+					vendors.push( _vendorPrefixes[prefixes[c]] );
 				}
 
 				return vendors;
 			},
 
+			_classListIsSupported = 'undefined' !== typeof Element && 'classList' in document.documentElement,
+
 			/**
-			 * @param property string
+			 * A fallback (not polyfill) for Element.CLassList
+			 * @param element
 			 */
-			_propertyExists = function( property ){
-				/*console.debug('--------------');
-				console.debug('_propertyExists; property:' + property);
-				console.debug('_propertyExists; _featureDetector');
-				console.debug( _featureDetector );
-				console.debug('_propertyExists; _featureDetector._getElementStyle');
-				console.debug(_featureDetector._getElementStyle);
-				console.debug( '_propertyExists; _featureDetector._getElementStyle(_testElement)' );
-				console.debug( _featureDetector._getElementStyle( _testElement ) );
-				console.debug( '_propertyExists; _featureDetector._getElementStyle(_testElement)[property]' );
-				console.debug( _featureDetector._getElementStyle( _testElement )[property] );*/
+			_ClassHandler = function( element ){
+				var _classProperty = 'class' + (_classListIsSupported ? 'List' : 'Name');
 
-				return 'undefined' !== typeof _featureDetector._getElementStyle(_testElement)[property];
+				/**
+				 * @param className string
+				 */
+				this.add = function( className ){
+
+					/** @var classes string|DOMTokenList */
+					var classes = element[_classProperty];
+
+					if( _classListIsSupported ){
+
+						classes.add( className );
+					}
+					else{
+						classes += (classes ? ' ' : '' ) + className;
+					}
+
+					element[_classProperty] = classes;//sync
+				};
 			},
-
-			_testElement = document.createElement( 'div' ),
 
 			_convertHyphenatedToCamelCase = function( str ){
 				return str.replace( /-([a-z])/g, function( matches ){
 					return matches[1].toUpperCase();
 				} );
-			};
+			},
+
+			/**
+			 * @param property string
+			 */
+				_propertyExists = function( property ){
+
+				return 'undefined' !== typeof _featureDetector._getElementStyle( _testElement )[property];
+			},
+
+			_testElement = document.createElement( 'div' );
 
 		/**
 		 * Takes array of objects like
@@ -68,24 +87,27 @@ define( function(){
 		 * @return {boolean}
 		 */
 		this.declareSupportFor = function( propertiesToDeclareSupportFor ){
-			var classes = document.documentElement.classList,
+
+			var classHandler = new _ClassHandler( document.documentElement ),
 				supportPrefix = 'has-',
-				propertyDetails,
-				supportsAll = true;
+				supportsAll = true,
+				propertyDetails;
 
 			for( var p in propertiesToDeclareSupportFor ){
 
 				propertyDetails = propertiesToDeclareSupportFor[p];
 
 				if( _featureDetector.supportsProperty( propertyDetails ) ){
-					classes.add( supportPrefix + propertyDetails.property );
+
+					classHandler.add( supportPrefix + propertyDetails.property );
 				}
 				else{
 					supportsAll = false;
 				}
 			}
+
 			return supportsAll;
-		}
+		};
 
 		/**
 		 * Added (publicly) to allow for mocking of actual CSSStyleDeclaration interaction in tests

@@ -7,6 +7,6 @@
 
     <load location="util/*.js" description="test utils"/>
 
-    <load location="../simple-feature-detector.js" description="source JavaScript files to test"/>
+    <load location="../simple-feature-detector.min.js" description="source JavaScript files to test"/>
     <load location="suites/*.js" description="test specs"/>
 </config>

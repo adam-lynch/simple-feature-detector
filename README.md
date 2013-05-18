@@ -1,6 +1,6 @@
-# Simple Feature Detector
+# Simple Feature Detector v0.0.2
 
-A very lightweight (711 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
+A very lightweight (605 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
 ### Usage
 * [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
@@ -54,7 +54,7 @@ This function also returns a boolean like the others (but it will not break if t
 -----------
 
 ### Browser support
-Since it currently uses [element.classList](https://developer.mozilla.org/en/docs/DOM/element.classList), support is [limited](http://caniuse.com/#search=classlist) to modern browsers.
+Since it currently uses [element.classList](https://developer.mozilla.org/en/docs/DOM/element.classList)<del>, support is [limited](http://caniuse.com/#search=classlist) to modern browsers</del> and I've built in a fallback for it, don't worry about browser support :)
 
 -----------
 \* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons. 
