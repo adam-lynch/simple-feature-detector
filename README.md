@@ -1,4 +1,4 @@
-# simple-feature-detector
+# Simple Feature Detector
 
 A very lightweight (711 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 

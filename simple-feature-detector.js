@@ -8,6 +8,14 @@ define( function(){
 	return new function(){
 		var _featureDetector = this,
 
+			_vendorPrefixes = {
+				g: 'moz', //Gecko
+				 k: 'k', //KHTML (Konqueror)
+				 p: 'o', //Presto (Opera)
+				 t: 'ms', //Trident (IE)
+				 w: 'webkit'
+			},
+
 			/**
 			 * Takes a string container an initial for each vendor would be acceptable and returns a list of their vendor prefixes
 			 *
@@ -16,29 +24,36 @@ define( function(){
 			 * @param prefixes | a string; e.g. "wgt" which means Webkit, Gecko (Moz) or a Trident (MS) prefixed property is ok
 			 * @returns {Array}
 			 */
-				_buildListOfAcceptableVendorPrefixes = function( prefixes ){
+			_buildListOfAcceptableVendorPrefixes = function( prefixes ){
 				var vendors = [];
+				prefixes = ('all' === prefixes ? 'gkptw' : prefixes);
 
-				for( var c = 0, length = ('all' === prefixes ? 'gkpw' : prefixes).length; c < length; c++ ){
-					vendors.push( '-' + _vendorPrefixes[prefixes[c]] + '-' );
+				for( var c = 0, length = prefixes.length; c < length; c++ ){
+					vendors.push(_vendorPrefixes[prefixes[c]]);
 				}
 
 				return vendors;
 			},
 
+			/**
+			 * @param property string
+			 */
 			_propertyExists = function( property ){
-				return 'undefined' !== _testElement.style[property];
+				/*console.debug('--------------');
+				console.debug('_propertyExists; property:' + property);
+				console.debug('_propertyExists; _featureDetector');
+				console.debug( _featureDetector );
+				console.debug('_propertyExists; _featureDetector._getElementStyle');
+				console.debug(_featureDetector._getElementStyle);
+				console.debug( '_propertyExists; _featureDetector._getElementStyle(_testElement)' );
+				console.debug( _featureDetector._getElementStyle( _testElement ) );
+				console.debug( '_propertyExists; _featureDetector._getElementStyle(_testElement)[property]' );
+				console.debug( _featureDetector._getElementStyle( _testElement )[property] );*/
+
+				return 'undefined' !== typeof _featureDetector._getElementStyle(_testElement)[property];
 			},
 
 			_testElement = document.createElement( 'div' ),
-
-			_vendorPrefixes = {
-				g: 'moz', //Gecko
-				k: 'k', //KHTML (Konqueror)
-				p: 'o', //Presto (Opera)
-				t: 'ms', //Trident (IE)
-				w: 'webkit'
-			},
 
 			_convertHyphenatedToCamelCase = function( str ){
 				return str.replace( /-([a-z])/g, function( matches ){
@@ -53,7 +68,7 @@ define( function(){
 		 * @return {boolean}
 		 */
 		this.declareSupportFor = function( propertiesToDeclareSupportFor ){
-			var bodyClasses = document.body.classList,
+			var classes = document.documentElement.classList,
 				supportPrefix = 'has-',
 				propertyDetails,
 				supportsAll = true;
@@ -63,7 +78,7 @@ define( function(){
 				propertyDetails = propertiesToDeclareSupportFor[p];
 
 				if( _featureDetector.supportsProperty( propertyDetails ) ){
-					bodyClasses.add( supportPrefix + propertyDetails.property );
+					classes.add( supportPrefix + propertyDetails.property );
 				}
 				else{
 					supportsAll = false;
@@ -71,6 +86,16 @@ define( function(){
 			}
 			return supportsAll;
 		}
+
+		/**
+		 * Added (publicly) to allow for mocking of actual CSSStyleDeclaration interaction in tests
+		 *
+		 * @param element
+		 * @returns {CSSStyleDeclaration}
+		 */
+		this._getElementStyle = function( element ){
+			return element.style;
+		};
 
 		/**
 		 * Most likely entry point. Pass it an object like {property: 'columnWidth', vendors: 'w'} and it will return true
@@ -94,9 +119,9 @@ define( function(){
 		 */
 		this.supportsAll = function( properties ){
 
-			for( var property in properties ){
+			for( var p in properties ){
 
-				if( !_featureDetector.supportsProperty( property ) ){
+				if( !_featureDetector.supportsProperty( properties[p] ) ){
 					return false;
 				}
 			}
@@ -114,16 +139,17 @@ define( function(){
 			if( 'undefined' !== typeof args.property ){
 
 				var property = _convertHyphenatedToCamelCase( args.property ),
-					prefixes = args.prefixes || '';
+					vendors = args.vendors || '';
 
 				if( _propertyExists( property ) ){
 					return true;
 				}
 				else{
-					var prefixedPropertyEnd = property[0].toLowerCase() + property.substr( 1 );
+					var prefixedPropertyEnd = property[0].toUpperCase() + property.substr( 1 ),
+						prefixes = _buildListOfAcceptableVendorPrefixes( vendors );
 
-					for( var prefix in _buildListOfAcceptableVendorPrefixes( prefixes ) ){
-						if( _propertyExists( prefix + prefixedPropertyEnd ) ){
+					for( var p in prefixes ){
+						if( _propertyExists( prefixes[p] + prefixedPropertyEnd ) ){
 							return true;
 						}
 					}
