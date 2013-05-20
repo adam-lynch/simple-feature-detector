@@ -34,7 +34,7 @@ var allTests = function( supportForClassList ){
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	describe( "declares support for features", function(){
+	describe( "declares support for a group of features", function(){
 
 		it( "declares support whether it be found natively or with a the current rendering engine's vendor prefix",
 			function(){
@@ -62,7 +62,7 @@ var allTests = function( supportForClassList ){
 							vendors:  'w'//ebkit
 						}
 					],
-					result = simpleFeatureDetector.declareSupportFor( desiredProperties );
+					result = simpleFeatureDetector.supports( desiredProperties );
 
 				expect( result ).toEqual( true );
 
@@ -194,7 +194,7 @@ var allTests = function( supportForClassList ){
 			 * @param successExpected {boolean}
 			 */
 			var minimalIndividualTest = function( simpleFeatureDetector, cssProperty, vendors, successExpected ){
-					expect( simpleFeatureDetector.supports( {property: cssProperty, vendors: vendors} ) )
+					expect( simpleFeatureDetector.supports( {property: cssProperty, vendors: vendors}, false ) )
 						.toEqual( successExpected );
 				},
 				mockedStyles = {};
