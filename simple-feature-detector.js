@@ -95,7 +95,7 @@ define( function(){
 			_supportsAll = function( properties, declareSupport ){
 				var supportsAll = true;
 
-				for( var p in properties ){
+				for( var p = 0; p < properties.length; p++ ){
 
 					if( !_supportsProperty( properties[p], declareSupport ) ){
 						supportsAll = false;
@@ -135,7 +135,7 @@ define( function(){
 						var prefixedPropertyEnd = property[0].toUpperCase() + property.substr( 1 ),
 							prefixes = _buildListOfAcceptableVendorPrefixes( vendors );
 
-						for( var p in prefixes ){
+						for( var p = 0; p < prefixes.length; p++ ){
 							if( _propertyExists( prefixes[p] + prefixedPropertyEnd ) ){
 								supported = true;
 

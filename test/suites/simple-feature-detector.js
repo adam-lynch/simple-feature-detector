@@ -145,7 +145,7 @@ var allTests = function( supportForClassList ){
 		} );
 
 		var vendor;
-		for( var v in testUtils.vendors ){
+		for( var v = 0; v < testUtils.vendors.length; v++ ){
 			vendor = testUtils.vendors[v];
 
 			it( "correctly detects support for a group of vendor-prefixed CSS properties - " + vendor.description,
@@ -224,7 +224,7 @@ var allTests = function( supportForClassList ){
 				individualPropertyTest( instantiateSimpleFeatureDetector(), cssProperty, styleProperty );
 			} );
 
-			for( var v in testUtils.vendors ){
+			for( var v = 0; v < testUtils.vendors.length; v++ ){
 				vendor = testUtils.vendors[v];
 				prefixedStyleProperty = vendor.stylePropertyPrefix + stylePropertyWhenPrefixed;
 
