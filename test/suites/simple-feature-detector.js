@@ -34,7 +34,7 @@ var allTests = function( supportForClassList ){
 
 	//------------------------------------------------------------------------------------------------------------------
 
-	describe( "declares support for features", function(){
+	describe( "declares support for a group of features", function(){
 
 		it( "declares support whether it be found natively or with a the current rendering engine's vendor prefix",
 			function(){
@@ -62,7 +62,7 @@ var allTests = function( supportForClassList ){
 							vendors:  'w'//ebkit
 						}
 					],
-					result = simpleFeatureDetector.declareSupportFor( desiredProperties );
+					result = simpleFeatureDetector.supports( desiredProperties );
 
 				expect( result ).toEqual( true );
 
@@ -145,7 +145,7 @@ var allTests = function( supportForClassList ){
 		} );
 
 		var vendor;
-		for( var v in testUtils.vendors ){
+		for( var v = 0; v < testUtils.vendors.length; v++ ){
 			vendor = testUtils.vendors[v];
 
 			it( "correctly detects support for a group of vendor-prefixed CSS properties - " + vendor.description,
@@ -194,7 +194,7 @@ var allTests = function( supportForClassList ){
 			 * @param successExpected {boolean}
 			 */
 			var minimalIndividualTest = function( simpleFeatureDetector, cssProperty, vendors, successExpected ){
-					expect( simpleFeatureDetector.supports( {property: cssProperty, vendors: vendors} ) )
+					expect( simpleFeatureDetector.supports( {property: cssProperty, vendors: vendors}, false ) )
 						.toEqual( successExpected );
 				},
 				mockedStyles = {};
@@ -224,7 +224,7 @@ var allTests = function( supportForClassList ){
 				individualPropertyTest( instantiateSimpleFeatureDetector(), cssProperty, styleProperty );
 			} );
 
-			for( var v in testUtils.vendors ){
+			for( var v = 0; v < testUtils.vendors.length; v++ ){
 				vendor = testUtils.vendors[v];
 				prefixedStyleProperty = vendor.stylePropertyPrefix + stylePropertyWhenPrefixed;
 
