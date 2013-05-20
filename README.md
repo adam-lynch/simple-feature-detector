@@ -51,4 +51,4 @@ if(simpleFeatureDetector.supports( { 'column-width', 'wg' }, false )){
 Since it currently uses [element.classList](https://developer.mozilla.org/en/docs/DOM/element.classList)<del>, support is [limited](http://caniuse.com/#search=classlist) to modern browsers</del> and I've built in a fallback for it, don't worry about browser support :)
 
 -----------
-\* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons. 
+\* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons.
