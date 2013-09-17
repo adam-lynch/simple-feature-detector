@@ -15,7 +15,7 @@ See the [RequireJS documentation](http://requirejs.org/docs/start.html) for furt
 
 * Declare support for a feature
 ```js
-simpleFeatureDetector.supports({ 'column-width', 'wg' }));
+simpleFeatureDetector.supports({  property: 'column-width', vendors: 'wg' }));
 ```
 Each object contains the CSS property desired and the vendors which it should check for*, _if_ it's not supported natively. 
 Possible values:
