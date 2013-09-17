@@ -5,17 +5,21 @@ A very lightweight (850 bytes gzipped) dependency-free [AMDS](http://wiki.common
 ### Usage
 * [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
 
-* In your AMDS module, declare simple-feature-detector as a dependency;
+* Either:
+  * Define this as a dependency:   
+    In your AMDS module, declare simple-feature-detector as a dependency;
 ```js
-define(['simple-feature-detector'], function( simpleFeatureDetector ){
+define(['simple-feature-detector'], function( SimpleFeatureDetector ){
         // do your thing...
 });
 ```
-See the [RequireJS documentation](http://requirejs.org/docs/start.html) for further help if needed.
+See the [RequireJS documentation](http://requirejs.org/docs/start.html) for further help if needed.  
+  
+  * Or use the global `SimpleFeatureDetector` global function (i.e. do nothing and just carry on to the next step).
 
 * Declare support for a feature
 ```js
-simpleFeatureDetector.supports({  property: 'column-width', vendors: 'wg' }));
+SimpleFeatureDetector.supports({  property: 'column-width', vendors: 'wg' }));
 ```
 Each object contains the CSS property desired and the vendors which it should check for*, _if_ it's not supported natively. 
 Possible values:
@@ -31,14 +35,15 @@ Possible values:
 
 * Check support for multiple features
 ```js
-simpleFeatureDetector.supports([
+SimpleFeatureDetector.supports([
             { property: 'column-width', vendors: 'wg' },
-            { property: 'border-radius', vendors: 'all' }
+            { property: 'border-radius', vendors: 'all' },
+            { property: 'transform-style', vendors: '' }//will check for native support only
         ]);
 ```
 * To simply determine if a feature is supported without adding classes to the DOM, use the second parameter `declareSupport` (which defaults to `true`)
 ```js
-if(simpleFeatureDetector.supports( { property: 'column-width', vendors: 'wg' }, false )){
+if(SimpleFeatureDetector.supports( { property: 'column-width', vendors: 'wg' }, false )){
             alert('Yes!');
         }
 ```
