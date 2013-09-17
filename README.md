@@ -6,15 +6,11 @@ A very lightweight (850 bytes gzipped) dependency-free [AMDS](http://wiki.common
 * [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
 
 * Either:
-  * In your AMDS module, declare simple-feature-detector as a dependency;
-```js
-define(['simple-feature-detector'], function( SimpleFeatureDetector ){
-        // do your thing...
-});
-```
-See the [RequireJS documentation](http://requirejs.org/docs/start.html) for further help if needed.  
+  * In your AMDS module, declare simple-feature-detector as a dependency;  
+  `define(['simple-feature-detector'], function( SimpleFeatureDetector ){/* do your thing... */});`  
+  See the [RequireJS documentation](http://requirejs.org/docs/start.html) for further help if needed.  
   
-  * Or use the global `SimpleFeatureDetector` global function (i.e. do nothing and just carry on to the next step).
+  * Or use the global `SimpleFeatureDetector` function (i.e. do nothing and just carry on to the next step).
 
 * Declare support for a feature
 ```js
@@ -37,7 +33,7 @@ Possible values:
 SimpleFeatureDetector.supports([
             { property: 'column-width', vendors: 'wg' },
             { property: 'border-radius', vendors: 'all' },
-            { property: 'transform-style', vendors: '' }//will check for native support only
+            { property: 'transform-style', vendors: '' } //will check for native support only
         ]);
 ```
 * To simply determine if a feature is supported without adding classes to the DOM, use the second parameter `declareSupport` (which defaults to `true`)
