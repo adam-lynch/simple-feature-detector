@@ -1,12 +1,12 @@
 # Simple Feature Detector v0.0.5 [![Build Status](https://travis-ci.org/adam-lynch/simple-feature-detector.png)](https://travis-ci.org/adam-lynch/simple-feature-detector)
 
-A very lightweight (893 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
+A very lightweight (893 bytes gzipped) dependency-free module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
 ### Usage
 * [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
 
 * Either:
-  * In your AMDS module, declare simple-feature-detector as a dependency;  
+  * In your [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module, declare simple-feature-detector as a dependency;  
   `define(['simple-feature-detector'], function( SimpleFeatureDetector ){/* do your thing... */});`  
   See the [RequireJS documentation](http://requirejs.org/docs/start.html) for further help if needed.  
   
