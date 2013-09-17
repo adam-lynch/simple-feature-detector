@@ -32,13 +32,13 @@ Possible values:
 * Check support for multiple features
 ```js
 simpleFeatureDetector.supports([
-            { 'column-width', 'wg' },
-            { 'border-radius', 'all' }
+            { property: 'column-width', vendors: 'wg' },
+            { property: 'border-radius', vendors: 'all' }
         ]);
 ```
 * To simply determine if a feature is supported without adding classes to the DOM, use the second parameter `declareSupport` (which defaults to `true`)
 ```js
-if(simpleFeatureDetector.supports( { 'column-width', 'wg' }, false )){
+if(simpleFeatureDetector.supports( { property: 'column-width', vendors: 'wg' }, false )){
             alert('Yes!');
         }
 ```
