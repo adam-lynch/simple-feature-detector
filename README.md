@@ -6,8 +6,7 @@ A very lightweight (850 bytes gzipped) dependency-free [AMDS](http://wiki.common
 * [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
 
 * Either:
-  * Define this as a dependency:   
-    In your AMDS module, declare simple-feature-detector as a dependency;
+  * In your AMDS module, declare simple-feature-detector as a dependency;
 ```js
 define(['simple-feature-detector'], function( SimpleFeatureDetector ){
         // do your thing...
