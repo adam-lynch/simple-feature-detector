@@ -1,4 +1,4 @@
-# Simple Feature Detector v0.0.4 [![Build Status](https://travis-ci.org/adam-lynch/simple-feature-detector.png)](https://travis-ci.org/adam-lynch/simple-feature-detector)
+# Simple Feature Detector v0.0.5 [![Build Status](https://travis-ci.org/adam-lynch/simple-feature-detector.png)](https://travis-ci.org/adam-lynch/simple-feature-detector)
 
 A very lightweight (850 bytes gzipped) dependency-free [AMDS](http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition) module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
@@ -32,13 +32,13 @@ Possible values:
 * Check support for multiple features
 ```js
 simpleFeatureDetector.supports([
-            { 'column-width', 'wg' },
-            { 'border-radius', 'all' }
+            { property: 'column-width', vendors: 'wg' },
+            { property: 'border-radius', vendors: 'all' }
         ]);
 ```
 * To simply determine if a feature is supported without adding classes to the DOM, use the second parameter `declareSupport` (which defaults to `true`)
 ```js
-if(simpleFeatureDetector.supports( { 'column-width', 'wg' }, false )){
+if(simpleFeatureDetector.supports( { property: 'column-width', vendors: 'wg' }, false )){
             alert('Yes!');
         }
 ```
