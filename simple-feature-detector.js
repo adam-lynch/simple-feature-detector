@@ -4,9 +4,9 @@
  *
  * @author: adam-lynch
  */
-(function(window){
+(function(window, undefined){
     //add to global namespace if define doesn't exist
-    if('undefined' === typeof window.define){
+    if(undefined === window.define){
         window.define = function(simpleFeatureDetector){
             window.SimpleFeatureDetector = simpleFeatureDetector();
         };
@@ -48,7 +48,7 @@
                  * @param element
                  */
                 _classHandler = new function( element ){
-                    var _classListIsSupported = 'undefined' !== typeof window.Element && 'classList' in document.documentElement,
+                    var _classListIsSupported = undefined !== window.Element && 'classList' in document.documentElement,
                         _classProperty = 'class' + (_classListIsSupported ? 'List' : 'Name');
 
                     /**
@@ -87,7 +87,7 @@
                  */
                 _propertyExists = function( property ){
 
-                    return 'undefined' !== typeof _featureDetector._getElementStyle( _testElement )[property];
+                    return undefined !== _featureDetector._getElementStyle( _testElement )[property];
                 },
 
 
@@ -128,8 +128,8 @@
                  * @param declareSupport {boolean}
                  * @returns {boolean}
                  */
-                    _supportsProperty = function( args, declareSupport ){
-                    if( 'undefined' !== typeof args.property ){
+                _supportsProperty = function( args, declareSupport ){
+                    if( undefined !== args.property ){
 
                         var cssProperty = args.property,
                             property = _convertHyphenatedToCamelCase( cssProperty ),
@@ -184,7 +184,7 @@
              * @returns {boolean}
              */
             this.supports = function( schrodingersCat, declareSupport ){
-                if('undefined' === typeof declareSupport){
+                if(undefined === declareSupport){
                     declareSupport = true;
                 }
 
