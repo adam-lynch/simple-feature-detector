@@ -4,9 +4,9 @@
  *
  * @author: adam-lynch
  */
-(function(window, undefined){
+(function(window){
     //add to global namespace if define doesn't exist
-    if(undefined === window.define){
+    if('undefined' === typeof window.define){
         window.define = function(simpleFeatureDetector){
             window.SimpleFeatureDetector = simpleFeatureDetector();
         };
@@ -32,7 +32,7 @@
                  * @param prefixes | a string; e.g. "wgt" which means Webkit, Gecko (Moz) or a Trident (MS) prefixed property is ok
                  * @returns {Array}
                  */
-                    _buildListOfAcceptableVendorPrefixes = function( prefixes ){
+                _buildListOfAcceptableVendorPrefixes = function( prefixes ){
                     var vendors = [];
                     prefixes = ('all' === prefixes ? 'gkptw' : prefixes);
 
@@ -47,8 +47,8 @@
                  * A fallback (not polyfill) for Element.CLassList
                  * @param element
                  */
-                    _classHandler = new function( element ){
-                    var _classListIsSupported = undefined !== window.Element && 'classList' in document.documentElement,
+                _classHandler = new function( element ){
+                    var _classListIsSupported = 'undefined' !== typeof window.Element && 'classList' in document.documentElement,
                         _classProperty = 'class' + (_classListIsSupported ? 'List' : 'Name');
 
                     /**
@@ -75,7 +75,7 @@
                  * @param str string
                  * @returns string
                  */
-                    _convertHyphenatedToCamelCase = function( str ){
+                _convertHyphenatedToCamelCase = function( str ){
                     return str.replace( /-([a-z])/g, function( matches ){
                         return matches[1].toUpperCase();
                     } );
@@ -85,9 +85,9 @@
                  * @param property string
                  * @returns {boolean}
                  */
-                    _propertyExists = function( property ){
+                _propertyExists = function( property ){
 
-                    return undefined !== _featureDetector._getElementStyle( _testElement )[property];
+                    return 'undefined' !== typeof _featureDetector._getElementStyle( _testElement )[property];
                 },
 
 
@@ -100,7 +100,7 @@
                  * @param declareSupport {boolean}
                  * @returns {boolean}
                  */
-                    _supportsAll = function( properties, declareSupport ){
+                _supportsAll = function( properties, declareSupport ){
                     var supportsAll = true;
 
                     for( var p = 0; p < properties.length; p++ ){
@@ -129,7 +129,7 @@
                  * @returns {boolean}
                  */
                     _supportsProperty = function( args, declareSupport ){
-                    if( undefined !== args.property ){
+                    if( 'undefined' !== typeof args.property ){
 
                         var cssProperty = args.property,
                             property = _convertHyphenatedToCamelCase( cssProperty ),
@@ -184,7 +184,7 @@
              * @returns {boolean}
              */
             this.supports = function( schrodingersCat, declareSupport ){
-                if(undefined === declareSupport){
+                if('undefined' === typeof declareSupport){
                     declareSupport = true;
                 }
 
