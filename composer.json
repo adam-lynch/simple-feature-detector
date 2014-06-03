@@ -1,7 +1,7 @@
 {
   "name": "adam-lynch/simple-feature-detector",
   "description": "A very lightweight dependency-free feature-detector",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "library",
   "keywords": [
     "javascript",
