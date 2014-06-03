@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var semver = require('semver');
-var combine = require('stream-combiner');
 var inquirer = require('inquirer');
 
 var mainFile = './simple-feature-detector.js';
