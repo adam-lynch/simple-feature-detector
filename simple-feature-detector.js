@@ -1,9 +1,4 @@
-/**
- * simple-feature-detector v0.05
- * Homepage: https://github.com/adam-lynch/simple-feature-detector
- *
- * @author: adam-lynch
- */
+//! simple-feature-detector v0.05 - https://github.com/adam-lynch/simple-feature-detector
 (function(window, undefined){
     //add to global namespace if define doesn't exist
     if(undefined === window.define){

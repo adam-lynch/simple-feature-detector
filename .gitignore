@@ -2,7 +2,8 @@
 ## JetBrains
 #################
 
-.idea/
+.idea
+*.iml
 
 #################
 ## Eclipse
