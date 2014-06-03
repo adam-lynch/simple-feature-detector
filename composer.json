@@ -1,24 +1,23 @@
 {
-	"name":        "adam-lynch/simple-feature-detector",
-	"description": "A very lightweight dependency-free feature-detector",
-	"version":     "0.0.5",
-	"type":        "library",
-	"keywords":    [
-		"javascript",
-		"feature detection",
-		"css"
-	],
-	"homepage":    "https://github.com/adam-lynch/simple-feature-detector",
-	"authors":     [
-		{
-			"name":     "Adam Lynch",
-			"email":    "contact@adamlynch.ie",
-			"homepage": "https://www.adamlynch.ie",
-			"role":     "lead"
-		}
-	],
-	"support":     {
-		"issues": "https://github.com/adam-lynch/simple-feature-detector/issues"
-	}
+  "name": "adam-lynch/simple-feature-detector",
+  "description": "A very lightweight dependency-free feature-detector",
+  "version": "0.0.5",
+  "type": "library",
+  "keywords": [
+    "javascript",
+    "feature detection",
+    "css"
+  ],
+  "homepage": "https://github.com/adam-lynch/simple-feature-detector",
+  "authors": [
+    {
+      "name": "Adam Lynch",
+      "email": "contact@adamlynch.ie",
+      "homepage": "https://www.adamlynch.ie",
+      "role": "lead"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/adam-lynch/simple-feature-detector/issues"
+  }
 }
-
