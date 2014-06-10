@@ -11,6 +11,7 @@ paths.testConfigRoot = paths.testRoot + 'config/';
 paths.jasmineRoot = paths.testConfigRoot + 'jasmine/';
 paths.testUtilsRoot = paths.testRoot + 'util/';
 paths.testSuitesRoot = paths.testRoot + 'suites/';
+paths.testRunnerFile = paths.testRoot + 'index.html';
 
 var compile = combine(
     $.uglify({
@@ -55,18 +56,18 @@ gulp.task('bump', function(done){
 });
 
 gulp.task('test', ['compile', 'compile-test'], function(done){
-    gulp.src(paths.testRoot + 'index.html')
+    gulp.src(paths.testRunnerFile)
         .pipe($.exec([
                 'phantomjs',
                 paths.testConfigRoot + 'phantomjs_jasminexml_runner.js',
-                paths.testRoot + 'test-runner.html',
+                paths.testRunnerFile,
                 paths.testRoot + 'results'
         ].join(' ')))
         .on('end', done);
 });
 
 gulp.task('view-tests', ['compile', 'compile-test'], function(done){
-    gulp.src(paths.testRoot + 'index.html')
+    gulp.src(paths.testRunnerFile)
         .pipe($.open())
         .on('end', done);
 });
@@ -78,7 +79,7 @@ gulp.task('compile-test', function(done){
         paths.jasmineRoot + 'jasmine.phantomjs-reporter.js',
         paths.testUtilsRoot + '*.js',
         './simple-feature-detector.min.js',
-        paths.testSuitesRoot + '*.js',
+        paths.testSuitesRoot + '*.js'
     ])
         .pipe($.concat('script.js'))
         .pipe($.insert.append('\n' + [
