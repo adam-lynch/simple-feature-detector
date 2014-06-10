@@ -224,3 +224,4 @@ pip-log.txt
 *.log
 node_modules
 test/script.js
+test/results
