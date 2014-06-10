@@ -27,7 +27,7 @@ var allTests = function( supportForClassList ){
 
 	it( "exists", function(){
 		expect( typeof SimpleFeatureDetector ).not.toEqual( "undefined" );
-		expect( typeof SimpleFeatureDetector() ).toEqual( "object" );
+		expect( typeof SimpleFeatureDetector() ).toEqual( "object2" );
 		expect( typeof instantiateSimpleFeatureDetector() ).toEqual( "object" );
 	} );
 
