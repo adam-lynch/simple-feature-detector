@@ -76,7 +76,7 @@ gulp.task('compile-test', function(done){
     gulp.src([
         paths.jasmineRoot + 'jasmine.js',
         paths.jasmineRoot + 'jasmine-html.js',
-        paths.jasmineRoot + 'jasmine.phantomjs-reporter.js',
+        paths.testConfigRoot + 'jasmine.phantomjs-reporter.js',
         paths.testUtilsRoot + '*.js',
         './simple-feature-detector.min.js',
         paths.testSuitesRoot + '*.js'
@@ -84,7 +84,7 @@ gulp.task('compile-test', function(done){
         .pipe($.concat('script.js'))
         .pipe($.insert.append('\n' + [
             'jasmine.getEnv().addReporter(new jasmine.TrivialReporter());',
-            'if(jasmine.PhantomJSReporter) jasmine.getEnv().addReporter(new jasmine.PhantomJSReporter());',
+            'jasmine.getEnv().addReporter(new jasmine.PhantomJSReporter());',
             'jasmine.getEnv().execute();'
         ].join('\n')))
         .pipe(gulp.dest(paths.testRoot))
