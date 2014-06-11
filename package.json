@@ -38,9 +38,7 @@
     "gulp-insert": "^0.3.0",
     "gulp-concat": "^2.2.0",
     "gulp-open": "^0.2.8",
-    "stream-combiner": "^0.2.1",
     "gulp-exec": "^2.0.1",
-    "gulp-wrap-umd": "^0.2.0",
-    "gulp-debug": "^0.3.0"
+    "gulp-wrap-umd": "^0.2.0"
   }
 }
