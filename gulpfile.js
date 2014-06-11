@@ -3,6 +3,8 @@ var $ = require('gulp-load-plugins')();
 var semver = require('semver');
 var inquirer = require('inquirer');
 
+var oldVersion =  require('./package.json').version
+
 var paths = {};
 paths.mainFile = './dev.js';
 paths.endFileName = 'simple-feature-detector.min.js';
@@ -13,6 +15,10 @@ paths.jasmineRoot = paths.testConfigRoot + 'jasmine/';
 paths.testUtilsRoot = paths.testRoot + 'util/';
 paths.testSuitesRoot = paths.testRoot + 'suites/';
 paths.testRunnerFile = paths.testRoot + 'index.html';
+
+var generateHeaderComment = function(version){
+    return '// simple-feature-detector v' + version+ ' - https://github.com/adam-lynch/simple-feature-detector';
+};
 
 gulp.task('default', ['bump']);
 
@@ -25,17 +31,11 @@ gulp.task('bump', ['compile'], function(done){
     }, function(result) {
 
         var shouldBump = result.bump !== "don't bump",
-            oldVersion =  require('./package.json').version,
-            newVersion =  shouldBump ? semver.inc(oldVersion, result.bump) : oldVersion;
+            newVersion = shouldBump ? semver.inc(oldVersion, result.bump) : oldVersion;
 
         gulp.src(paths.endFile)
-            .pipe($.insert.prepend('// simple-feature-detector v' + newVersion+ ' - https://github.com/adam-lynch/simple-feature-detector\n'))
+            .pipe($.replace(/.+/, generateHeaderComment(newVersion)))
             .pipe(gulp.dest('./'));
-
-        if(!shouldBump){
-            done();
-            return;
-        }
 
         gulp.src('./*.json')
             .pipe($.bump({
@@ -90,6 +90,7 @@ gulp.task('compile', function(done){
         }))
         //.pipe($.uglify())
         .pipe($.rename(paths.endFileName))
+        .pipe($.insert.prepend(generateHeaderComment(oldVersion)))
         .pipe(gulp.dest('./'))
         .on('end', done);
 });
