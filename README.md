@@ -3,7 +3,7 @@
 A very lightweight (847 bytes gzipped) dependency-free module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
 ### Usage
-* [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js)
+* [Download](https://github.com/adam-lynch/simple-feature-detector/raw/master/simple-feature-detector.min.js) / get from: [npm](https://www.npmjs.org/package/simple-feature-detector), [bower](http://bower.io/search/?q=simple-feature-detector) or [packagist](https://packagist.org/packages/adam-lynch/simple-feature-detector).
 
 * Usage: [UMD](https://github.com/umdjs/umd) is supported so you can use this with AMDs / [RequireJS](http://requirejs.org/), commonjs / [browserify](http://browserify.org/), or simply by sticking the `<script>` in your HTML and use the global `SimpleFeatureDetector` function. See the [examples](https://github.com/adam-lynch/simple-feature-detector/tree/master/examples) for an example of each.
 
