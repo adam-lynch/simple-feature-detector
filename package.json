@@ -39,6 +39,8 @@
     "gulp-concat": "^2.2.0",
     "gulp-open": "^0.2.8",
     "gulp-exec": "^2.0.1",
-    "gulp-wrap-umd": "^0.2.0"
+    "gulp-wrap-umd": "^0.2.0",
+    "gulp-gzip": "0.0.8",
+    "gulp-size": "^0.4.0"
   }
 }
