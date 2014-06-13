@@ -97,7 +97,7 @@ gulp.task('compile', function(done){
         }))
         .pipe($.rename(paths.endMinifiedFileName))
         .pipe(gulp.dest('./'))
-        /*.pipe($.gzip())
-        .pipe($.size())*/
-        .on('end', done);
+        .pipe($.gzip())
+        .pipe($.size())
+        .on('finish', done);
 });
