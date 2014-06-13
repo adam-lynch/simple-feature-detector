@@ -2,7 +2,7 @@
   "name": "simple-feature-detector",
   "version": "0.0.6",
   "description": "A very lightweight dependency-free CSS feature-detector",
-  "main": "simple-feature-detector.js",
+  "main": "simple-feature-detector.min.js",
   "private": true,
   "directories": {
     "test": "test"
