@@ -48,5 +48,9 @@ You'll be fine. Tested as far back as Internet Explorer 8.
 -----------
 \* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons.
 
+
+[npm-url]: https://npmjs.org/package/simple-feature-detector
+[npm-image]: https://badge.fury.io/js/simple-feature-detector.png
+
 [travis-url]: http://travis-ci.org/adam-lynch/simple-feature-detector
 [travis-image]: http://img.shields.io/travis/adam-lynch/simple-feature-detector.svg?style=flat
