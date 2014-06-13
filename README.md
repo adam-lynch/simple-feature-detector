@@ -1,4 +1,4 @@
-# Simple Feature Detector v0.0.5 [![Build Status](https://travis-ci.org/adam-lynch/simple-feature-detector.png)](https://travis-ci.org/adam-lynch/simple-feature-detector)
+# Simple Feature Detector [[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
 A very lightweight (847 bytes gzipped) dependency-free module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
@@ -47,3 +47,6 @@ You'll be fine. Tested as far back as Internet Explorer 8.
 
 -----------
 \* You wouldn't want to check for a vendor+property combination when it never existed (like `o-border-radius`), among other possible reasons.
+
+[travis-url]: http://travis-ci.org/adam-lynch/simple-feature-detector
+[travis-image]: http://img.shields.io/travis/adam-lynch/simple-feature-detector.svg?style=flat
