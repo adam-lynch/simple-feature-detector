@@ -7,8 +7,9 @@ var oldVersion =  require('./package.json').version
 
 var paths = {};
 paths.mainFile = './dev.js';
-paths.endFileName = 'simple-feature-detector.min.js';
-paths.endFile = './' + paths.endFileName;
+paths.endFileName = 'simple-feature-detector.js';
+paths.endMinifiedFileName = 'simple-feature-detector.min.js';
+paths.endMinifiedFile = './' + paths.endMinifiedFileName;
 paths.testRoot = './test/';
 paths.testConfigRoot = paths.testRoot + 'config/';
 paths.jasmineRoot = paths.testConfigRoot + 'jasmine/';
@@ -17,7 +18,7 @@ paths.testSuitesRoot = paths.testRoot + 'suites/';
 paths.testRunnerFile = paths.testRoot + 'index.html';
 
 var generateHeaderComment = function(version){
-    return '// simple-feature-detector v' + version+ ' - https://github.com/adam-lynch/simple-feature-detector';
+    return '//! simple-feature-detector v' + version+ ' - https://github.com/adam-lynch/simple-feature-detector';
 };
 
 gulp.task('default', ['bump']);
@@ -33,7 +34,7 @@ gulp.task('bump', ['compile'], function(done){
         var shouldBump = result.bump !== "don't bump",
             newVersion = shouldBump ? semver.inc(oldVersion, result.bump) : oldVersion;
 
-        gulp.src(paths.endFile)
+        gulp.src(paths.endMinifiedFile)
             .pipe($.replace(/.+/, generateHeaderComment(newVersion)))
             .pipe(gulp.dest('./'));
 
@@ -70,7 +71,7 @@ gulp.task('compile-test', function(done){
         paths.jasmineRoot + 'jasmine-html.js',
         paths.testConfigRoot + 'jasmine.phantomjs-reporter.js',
         paths.testUtilsRoot + '*.js',
-        paths.endFile,
+        paths.endMinifiedFile,
         paths.testSuitesRoot + '*.js'
     ])
         .pipe($.concat('script.js'))
@@ -88,9 +89,13 @@ gulp.task('compile', function(done){
         .pipe($.wrapUmd({
             namespace: 'SimpleFeatureDetector'
         }))
-        //.pipe($.uglify())
         .pipe($.rename(paths.endFileName))
         .pipe($.insert.prepend(generateHeaderComment(oldVersion)))
+        .pipe(gulp.dest('./'))
+        .pipe($.uglify({
+            preserveComments: 'some'
+        }))
+        .pipe($.rename(paths.endMinifiedFileName))
         .pipe(gulp.dest('./'))
         .on('end', done);
 });
