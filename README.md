@@ -14,7 +14,7 @@ A very lightweight (893 bytes gzipped) dependency-free module to easily detect C
 
 * Declare support for a feature
 ```js
-SimpleFeatureDetector.supports({  property: 'column-width', vendors: 'wg' }));
+SimpleFeatureDetector.supports({  property: 'column-width', vendors: 'wg' });
 ```
 Each object contains the CSS property desired and the vendors which it should check for*, _if_ it's not supported natively. 
 Possible values:
