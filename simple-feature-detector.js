@@ -1,4 +1,4 @@
-//! simple-feature-detector v0.0.6 - https://github.com/adam-lynch/simple-feature-detector
+//! simple-feature-detector v1.0.0 - https://github.com/adam-lynch/simple-feature-detector
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(factory);
