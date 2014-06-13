@@ -1,4 +1,4 @@
-# Simple Feature Detector [[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+# Simple Feature Detector [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
 A very lightweight (847 bytes gzipped) dependency-free module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
