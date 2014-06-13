@@ -1,0 +1,1 @@
+SimpleFeatureDetector.supports({  property: 'column-width', vendors: 'wg' });

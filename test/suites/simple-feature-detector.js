@@ -10,13 +10,11 @@ var allTests = function( supportForClassList ){
 
 	var instantiateSimpleFeatureDetector = function(){
 
-		var featureDetector = SimpleFeatureDetector();
-
-
+		var featureDetector = SimpleFeatureDetector;
 		featureDetector._classListIsSupported = supportForClassList;
 
 		return featureDetector;
-	}
+	};
 
 	afterEach( function(){
 		testUtils.cleanFeatureClasses( document.documentElement );
@@ -26,8 +24,7 @@ var allTests = function( supportForClassList ){
 
 
 	it( "exists", function(){
-		expect( typeof SimpleFeatureDetector ).not.toEqual( "undefined" );
-		expect( typeof SimpleFeatureDetector() ).toEqual( "object" );
+		expect( typeof SimpleFeatureDetector ).toEqual( "object" );
 		expect( typeof instantiateSimpleFeatureDetector() ).toEqual( "object" );
 	} );
 
