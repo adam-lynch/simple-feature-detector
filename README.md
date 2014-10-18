@@ -1,4 +1,4 @@
-# Simple Feature Detector [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+# Simple Feature Detector [![Bower version][bower-image]][bower-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
 
 A very lightweight (847 bytes gzipped) dependency-free module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
@@ -50,7 +50,10 @@ You'll be fine. Tested as far back as Internet Explorer 8.
 
 
 [npm-url]: https://npmjs.org/package/simple-feature-detector
-[npm-image]: https://badge.fury.io/js/simple-feature-detector.png
+[npm-image]: http://img.shields.io/npm/v/simple-feature-detector.svg?style=flat
+
+[bower-url]: https://github.com/adam-lynch/simple-feature-detector
+[bower-image]: http://img.shields.io/bower/v/simple-feature-detector.svg?style=flat
 
 [travis-url]: http://travis-ci.org/adam-lynch/simple-feature-detector
 [travis-image]: http://img.shields.io/travis/adam-lynch/simple-feature-detector.svg?style=flat
