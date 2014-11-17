@@ -1,4 +1,4 @@
-# Simple Feature Detector 
+Simple Feature Detector 
 =======
 
 [![Bower version][bower-image]][bower-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Windows Build Status][appveyor-image]][appveyor-url]
