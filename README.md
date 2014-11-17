@@ -1,4 +1,9 @@
-# Simple Feature Detector [![Bower version][bower-image]][bower-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+# Simple Feature Detector 
+=======
+
+[![Bower version][bower-image]][bower-url] [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Windows Build Status][appveyor-image]][appveyor-url]
+
+---
 
 A very lightweight (847 bytes gzipped) dependency-free module to easily detect CSS features in the browser (and declare their support adding CSS classes to the HTML element).
 
@@ -57,3 +62,6 @@ You'll be fine. Tested as far back as Internet Explorer 8.
 
 [travis-url]: http://travis-ci.org/adam-lynch/simple-feature-detector
 [travis-image]: http://img.shields.io/travis/adam-lynch/simple-feature-detector.svg?style=flat
+
+[appveyor-url]: https://ci.appveyor.com/project/adam-lynch/simple-feature-detector/branch/master
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/7sxb7wcfyp03vk4c/branch/master?svg=true
